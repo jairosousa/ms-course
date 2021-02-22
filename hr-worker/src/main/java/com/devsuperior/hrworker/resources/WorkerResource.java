@@ -22,9 +22,6 @@ public class WorkerResource {
 
     private static Logger logger = LoggerFactory.getLogger(WorkerResource.class);
     
-    @Value("${test.config}")
-    private String testConfig;
-
     private final Environment env;
 
     private final WorkerRepository repository;
@@ -39,13 +36,6 @@ public class WorkerResource {
         List<Worker> list = repository.findAll();
 
         return ResponseEntity.ok(list);
-    }
-
-    @GetMapping(value="/configs")
-    public ResponseEntity<Void> findAllConfig() {
-        logger.info("CONFIG = " + testConfig);
-        logger.info("CONFIG = " + env.getProperty("test.config"));
-        return ResponseEntity.noContent().build();
     }
 
     @GetMapping(value = "/{id}")
